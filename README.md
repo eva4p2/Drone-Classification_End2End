@@ -3,7 +3,7 @@ In this project a mobilenetv2 is trained on a custom dataset consists of classes
 ## Following are the steps performed in order to preprocess dataset before it to be passed for training-
 
  1. A very large group has collected dataset consists of aforementioned classes at a shared gdrive location. Download raw dataset from shared gdrive - <link>
- 2. Segregation of dataset into train and test is required in order to train and test mobilenetv2 accuracy. The linux command below easily hepl you segregating data of {i} classes into train and test. The command it to be run fro raw data {i} class folder. The command copy images into target/{train/test}/{i}class/ directorires -
+ 2. Segregation of dataset into train and test is required in order to train and test mobilenetv2 accuracy. The linux command below easily help segregating data of {i} classes into train and test. The command it to be run fro raw data {i} class folder. The command copy images into target/{train/test}/{i}class/ directorires -
 	```2.1 find . -maxdepth 1 -type f | head -n70 | xargs -I X cp X <target/train/{i}dir>```
 	```2.2 find . -maxdepth 1 -type f | tail -n30 | xargs -I X cp X <target/test/{i}dir>```
 	```70:30 is the split for train and test.```
