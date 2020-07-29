@@ -4,11 +4,11 @@ In this project a mobilenetv2 is trained on a custom dataset consists of classes
 
  1. A very large group has collected dataset consists of aforementioned classes at a shared gdrive location. Download raw dataset from shared gdrive - <link>
  2. Segregation of dataset into train and test is required in order to train and test mobilenetv2 accuracy. The linux command below easily hepl you segregating data of {i} classes into train and test. The command it to be run fro raw data {i} class folder. The command copy images into target/{train/test}/{i}class/ directorires -
-	2.1 find . -maxdepth 1 -type f | head -n70 | xargs -I X cp X <target/train/{i}dir>
-	2.2 find . -maxdepth 1 -type f | tail -n30 | xargs -I X cp X <target/test/{i}dir>
-	70:30 is the split for train and test.
+	```2.1 find . -maxdepth 1 -type f | head -n70 | xargs -I X cp X <target/train/{i}dir>```
+	```2.2 find . -maxdepth 1 -type f | tail -n30 | xargs -I X cp X <target/test/{i}dir>```
+	```70:30 is the split for train and test.```
  3. Once the dataset is structured it would appear like this
-	-root/dir
+	```-root/dir
 		-train
 			-0
 			-1
@@ -19,11 +19,11 @@ In this project a mobilenetv2 is trained on a custom dataset consists of classes
 			-1
 			-2
 			-3
-		words.txt
+		words.txt```
  4. 0,1,2,3 are the four classes as mentioned in point #1 of this README.md on which our mobilenetv2 is trained. File words.txt is a class to label mapping file. For ease the structure of datatest is kept similar to tinyimagenet dataset.
  5. Cleansing of raw dataset is needed post segregation into train and test as not all the images in the dataset are in JPG format. Use the following linux command to convert PNG and JPEG into JPG. The below command also displays on terminal which all images are not able to convert because the images are corrupt images hence once can easily clean them from the directory-
-	3.1 for i in *.png; do convert "$i" "${i%.*}.jpg" ; done
-	3.2 for i in *.jpeg; do convert "$i" "${i%.*}.jpg" ; done
+	```3.1 for i in *.png; do convert "$i" "${i%.*}.jpg" ; done
+	3.2 for i in *.jpeg; do convert "$i" "${i%.*}.jpg" ; done```
  6. Use the following command to download the dataset when traning from colab
 	``` #!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10EPoE4EuFQ6Sq8VZTQmboIiQLdk1w_gl' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10EPoE4EuFQ6Sq8VZTQmboIiQLdk1w_gl" -O session2-dataset ```
 
