@@ -4,22 +4,26 @@ In this project we are doing end to end deploying of MobilenetV2 model for custo
 
 The project steps includes ***drone dataset preparations***, ***transfer learning with pytorch*** and ***deploy in aws-lambda*** using serverless and docker. 
 
-This project gave us a proper understanding of the techniques, steps and difficulties to make a end to end deep learning project.
+This project gave us a proper understanding of the techniques, steps and difficulties to make an end to end deeplearning project.
+
+
 
 ## Overview
 
 ### Dataset
 
-Dataset Link : 
+Dataset Link			  :	[G-Drive Link](https://drive.google.com/drive/folders/1sF9MQ5Jkynt3M-TboO_UZTGzYARWe5Oo?usp=sharing)
 
-Total Images :
+Total Images 			:	Total ***16034 images*** ( 11375 in Train + 4659 in Test)
 
-Team Contribution : 
+Team Contribution  :  Team contributed ***1112 Winged Drone images***. ([link](https://drive.google.com/drive/folders/1wtkqDjGvGNnJjIr8nU4lT_CG58d3_GCh?usp=sharing))
 
 ### Model Training
 
 * Transfer learning is used to train pre-trained MobilenetV2 model for cutome dataset.
-* Test Acuracy : 95.37%
+* Test Acuracy : ***95.37%***
+
+
 
 ### Deploy
 
@@ -59,7 +63,7 @@ POST - https://fowahmw57k.execute-api.ap-south-1.amazonaws.com/dev/classify
  6. Use the following command to download the dataset when traning from colab
 	``` #!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10EPoE4EuFQ6Sq8VZTQmboIiQLdk1w_gl' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10EPoE4EuFQ6Sq8VZTQmboIiQLdk1w_gl" -O session2-dataset ```
 
-###  3. Model Description
+###  2. Model Description
 
 We did transfer learning using Mobilenet V2 model which pre-trained with Imagenet.
 
@@ -89,15 +93,65 @@ class DroneMobilenetV2(DroneClassificationBase):
 
 
 
-### 4. Training
+### 3. Training
+
+We did training multiple times with different hyper parameters and Augmentations.
+
+* Tried maximum of ***40 epochs***.
+  * At initial 10 epochs we ***trained the newly created  fully-connected network alone by freezing all other layers***.
+  * After first 10 epochs, ***unfreezed all other layers and trained the entire model***.
+*  For mobilenet_v2 model and all input images of size 224x224, colab is supporting ***bachsize upto 256***
+* Hyperparameter tuning is done with ***LR-Finder and found the optimum Learning Rate is 0.005 is .***
+* We tried both ***SGD and Adam optimisers***. 
+  * Using Adam its observed quick improvement in test accuracy. But ***SGD optimiser made the accuracy beyond 95%***.
+* We tried with different ***schedular*** such as ***stepLR, Onecycle policy, Cyclic-LR***.
+  * ***Cyclic LR policy with maximum LR of 0.01*** gives the top accuracy.
+* Different ***Criterions*** including ***negative log-likeihood***, ***cross entropy loss*** are used.
+  * Cross entropy loss gave higher accuracy.
+* ***L2 Regulariser*** also used to avoid over-fitting.
+* Varioud ***augmentation*** stratergies such as cutout, RandomHorizontalFlip, RandomCrop, RandomRotation, RandomErasing are used to avoid over fitting.
+
+
+
+### 4. Evaluation
+
+Highest ***test accuracy of 95.37%*** achieved within 40 epochs using SGD optimiser, Cyclic LR scheduler with maximum LR of 0.01 and batch size of 256. 
+
+#### Test Accuracy Plot
+
+![acc](plots/accuracy.png)
+
+#### Loss Plot
+
+![loss](plots/loss.png)
+
+#### LR Plot
+
+![lr](plots/lr.png)
+
+
 
 
 
 ### 5. Mis-Classified Images
 
+#### i. Ground  truth is Flying Birds
 
 
 
+#### ii. Ground truth is Large QuadCopters
 
 
+
+#### iii Ground truth is Small QuadCopters
+
+
+
+#### iv Ground truth is Winged Drones
+
+
+
+#
+
+***Team Members : Rao Ganji, Rohit R Nath, Varinder Sandhu.***
 
