@@ -148,7 +148,7 @@ Highest ***test accuracy of 95.37%*** achieved within 40 epochs using SGD optimi
 ![](plots/SmallQuadCop.png)
 
 #### iv Ground truth is Winged Drones
-	In this project this class is a trivial case where alot dirty images are removed during cleanising the dataset yet there are some which are left in the test folder. Although the Target Label itself is wrong but if we look carefully and see the highest probablity what network the input test image could be. This amazes as it is predicted right since the label is incorrect the images are classified as Winged Drones. 
+	In this project this class is a trivial case where alot dirty images are removed during cleanising the dataset yet there are some which are left in the test folder. Although the Target Label itself is wrong but if we look carefully and see the highest probablity what network the input test image could be. This amazes as it is predicted right since the label is incorrect the images fall under Winged Drones. 
 ![](plots/WingedDrone.png)
 
 #
