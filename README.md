@@ -137,19 +137,19 @@ Highest ***test accuracy of 95.37%*** achieved within 40 epochs using SGD optimi
 
 #### i. Ground  truth is Flying Birds
 
-
+!(plots/FlyingBird.png)
 
 #### ii. Ground truth is Large QuadCopters
 
-
+!(plots/LargeQuadCop.png)
 
 #### iii Ground truth is Small QuadCopters
 
-
+!(plots/SmallQuadCop.png)
 
 #### iv Ground truth is Winged Drones
 
-
+!(plots/WingedDrone.png)
 
 #
 
